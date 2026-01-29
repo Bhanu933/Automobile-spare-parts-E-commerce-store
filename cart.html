@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>{{ session.get('username') }}'s Cart</h2>
+    <a href="{{ url_for('home') }}">Continue Shopping</a> | <a href="{{ url_for('logout') }}">Logout</a>
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Action</th>
+        </tr>
+        {% for item in cart_items %}
+        <tr>
+            <td>{{ item['name'] }}</td>
+            <td>₹ {{ item['price'] }}</td>
+            <td>{{ item['quantity'] }}</td>
+            <td>₹ {{ item['price'] * item['quantity'] }}</td>
+            <td><a href="{{ url_for('remove_from_cart', cart_id=item['id']) }}">Remove</a></td>
+        </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="3"><strong>Total</strong></td>
+            <td colspan="2"><strong>₹ {{ total }}</strong></td>
+        </tr>
+    </table>
+    <a href="{{ url_for('checkout') }}"><button>Proceed to Checkout</button></a>
+</body>
+</html>

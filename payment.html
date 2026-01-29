@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="payment-card">
+        <h2>Payment</h2>
+        <p>Total: ₹{{ total }}</p>
+        <form method="POST">
+            <input type="text" name="card_number" placeholder="Card Number" required><br>
+            <input type="text" name="expiry" placeholder="Expiry (MM/YY)" required><br>
+            <input type="text" name="cvv" placeholder="CVV" required><br>
+            <input type="submit" value="Pay ₹{{ total }}">
+        </form>
+    </div>
+</body>
+</html>
